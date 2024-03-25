@@ -290,3 +290,6 @@ __pycache__/
 /Molten.Samples/Assets/NotoSansCJKkr-Regular.otf
 /Report20181026-1229.diagsession
 /Report20181026-1143.diagsession
+
+# MacOS bullshit
+.DS_Store

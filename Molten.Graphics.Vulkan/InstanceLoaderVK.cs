@@ -52,8 +52,13 @@ internal unsafe class InstanceLoaderVK : ExtensionLoaderVK<Instance>
             EnabledLayerCount = (uint)binding.Layers.Count,
             PpEnabledLayerNames = tmp.LayerNames,
             EnabledExtensionCount = (uint)binding.Extensions.Count,
-            PpEnabledExtensionNames = tmp.ExtensionNames
+            PpEnabledExtensionNames = tmp.ExtensionNames,
         };
+        
+        if (OperatingSystem.IsMacOS())
+        {
+            createInfo.Flags |= InstanceCreateFlags.EnumeratePortabilityBitKhr;
+        }
 
         // Create the instance
         Result r = renderer.VK.CreateInstance(&createInfo, null, obj);

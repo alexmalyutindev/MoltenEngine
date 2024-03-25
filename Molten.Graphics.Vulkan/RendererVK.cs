@@ -66,6 +66,11 @@ public unsafe class RendererVK : RenderService
             });
         }
 
+        if (OperatingSystem.IsMacOS())
+        {
+            _instanceLoader.AddExtension("VK_KHR_portability_enumeration");
+        }
+
         _instanceLoader.AddExtension<KhrSurface>();
         _instanceLoader.AddGlfwExtensions();
 

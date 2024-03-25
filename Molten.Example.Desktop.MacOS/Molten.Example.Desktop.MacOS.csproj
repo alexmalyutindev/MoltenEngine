@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>Example.MacOS</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Molten.Audio.OpenAL\Molten.Audio.OpenAL.csproj" />
+      <ProjectReference Include="..\Molten.Engine.MacOS\Molten.Engine.MacOS.csproj" />
+      <ProjectReference Include="..\Molten.Examples.Common\Molten.Examples.Common.csproj" />
+      <ProjectReference Include="..\Molten.Graphics.Vulkan\Molten.Graphics.Vulkan.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -255,10 +255,11 @@ public unsafe class DeviceVK : GpuDevice
 
             _extSwapChain = GetExtension<KhrSwapchain>();
 
+            _resources = new ResourceManagerVK(this);
+
             return true;
         }
 
-        _resources = new ResourceManagerVK(this);
         return false;
     }
 

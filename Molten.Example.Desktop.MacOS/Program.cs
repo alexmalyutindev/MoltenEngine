@@ -16,6 +16,8 @@ internal class Program
         settings.Graphics.VSync.Value = true;
         settings.Graphics.FrameBufferMode.Value = FrameBufferMode.Double;
 
+        settings.UI.DefaultFontName.Value = "OpenSans-Regular";
+        
         _browser = new ExampleBrowser<RendererVK, MacOSInputService, AudioServiceAL>("Example Browser");
         _browser.Start(settings, true);
     }

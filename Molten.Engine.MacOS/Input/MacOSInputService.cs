@@ -1,4 +1,6 @@
 ﻿using Molten.Graphics;
+using Silk.NET.Input;
+using Silk.NET.Windowing;
 
 namespace Molten.Input;
 
@@ -9,10 +11,23 @@ public class MacOSInputService : InputService
 
     private INativeSurface _surface;
     private IntPtr _windowHandle;
+    private IInputContext _inputContext;
 
-    protected override void OnClearState()
+    protected override void OnInitialize(EngineSettings settings)
     {
-        throw new NotImplementedException();
+        base.OnInitialize(settings);
+        // TODO: 
+        // _inputContext = Window.GetView().CreateInput();
+    }
+
+    protected override void OnStart(EngineSettings settings)
+    {
+        base.OnStart(settings);
+    }
+
+    protected override void OnStop(EngineSettings settings)
+    {
+        base.OnStop(settings);
     }
 
     protected override void OnBindSurface(INativeSurface surface)
@@ -37,27 +52,6 @@ public class MacOSInputService : InputService
         }
     }
 
-    protected override GamepadDevice OnGetGamepad(int index, GamepadSubType subtype)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override MouseDevice GetMouse()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override KeyboardDevice GetKeyboard()
-    {
-        throw new NotImplementedException();
-    }
-
-
-    public override TouchDevice GetTouch()
-    {
-        throw new NotImplementedException();
-    }
-
     private void SurfaceHandleChanged(INativeSurface surface)
     {
         if (surface.WindowHandle != null)
@@ -66,4 +60,30 @@ public class MacOSInputService : InputService
             // Win32.HookToWindow(_windowHandle);
         }
     }
+
+    protected override void OnClearState()
+    {
+    }
+
+    public override MouseDevice GetMouse()
+    {
+        // TODO:
+        return null;
+    }
+
+    public override KeyboardDevice GetKeyboard()
+    {
+        return GetCustomDevice<MacOSKeyboardDevice>();
+    }
+
+    protected override GamepadDevice OnGetGamepad(int index, GamepadSubType subtype)
+    {
+        return null;
+    }
+
+    public override TouchDevice GetTouch()
+    {
+        return null;
+    }
+
 }

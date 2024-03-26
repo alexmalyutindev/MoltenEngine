@@ -216,6 +216,16 @@ public abstract class SwapChainSurfaceVK : RenderSurface2DVK, INativeSurface
 
     internal void Prepare(CommandListVK cmd, uint imageIndex)
     {
+        if (_handles == null)
+        {
+            CreateImageHandle();
+            for (int i = 0; i < _handles.Length; i++)
+            {
+                // TODO: Initialize swapchain!
+                CreateImage(Device, _handles[i].SubHandle, MemoryPropertyFlags.None);
+            }
+        }
+
         SetHandle(_handles[imageIndex]);
         Transition(cmd, ImageLayout.Undefined, ImageLayout.PresentSrcKhr);
     }

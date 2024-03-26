@@ -22,7 +22,7 @@ public abstract class ContentHandle : WorkerTask, IDisposable
         Parameters = parameters;
         HandleType = handleType;
         RelativePath = Path.GetRelativePath(Manager.ExecutablePath.Directory.FullName, Info.Directory.FullName);
-        RelativePath = $"{RelativePath}\\{Info.Name}";
+        RelativePath = Path.Combine(RelativePath, Info.Name);
     }
 
     public override string ToString()

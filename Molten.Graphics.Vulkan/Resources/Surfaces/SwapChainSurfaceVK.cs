@@ -86,7 +86,27 @@ public abstract class SwapChainSurfaceVK : RenderSurface2DVK, INativeSurface
     protected override ResourceHandleVK<Image, ImageHandleVK> CreateImageHandle()
     {
         _handles = new ResourceHandleVK<Image, ImageHandleVK>[Device.FrameBufferSize];
-        return null;
+        for (int index = 0; index < _handles.Length; index++)
+        {
+            _handles[index] = new ResourceHandleVK<Image, ImageHandleVK>(
+                new RenderSurface2DVK(
+                    Device,
+                    Width,
+                    Height,
+                    1,
+                    1,
+                    AntiAliasLevel.None,
+                    MSAAQuality.Default,
+                    GpuResourceFormat.R8G8B8A8_UNorm,
+                    GpuResourceFlags.None,
+                    "RenderTarget"
+                ),
+                true,
+                (device, handle, flags) => { }
+            );
+        }
+
+        return _handles[0];
     }
 
     protected unsafe override void CreateImage(DeviceVK device, ImageHandleVK subHandle, MemoryPropertyFlags memFlags, ref ImageCreateInfo imgInfo, ref ImageViewCreateInfo viewInfo)

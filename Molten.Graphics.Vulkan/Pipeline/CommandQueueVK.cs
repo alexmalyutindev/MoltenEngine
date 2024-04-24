@@ -39,7 +39,7 @@ public unsafe class CommandQueueVK : GpuObject<DeviceVK>
     internal unsafe void Execute(GpuCommandList list)
     {
         CommandListVK cmd = list as CommandListVK;
-        if (cmd.Level != CommandBufferLevel.Secondary)
+        if (cmd.Level == CommandBufferLevel.Secondary)
             throw new InvalidOperationException("Cannot submit a secondary command list to a queue");
 
         CommandBuffer* ptrBuffers = stackalloc CommandBuffer[] { cmd.Ptr };

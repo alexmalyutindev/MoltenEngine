@@ -28,7 +28,11 @@ public unsafe class BufferVK : GpuBuffer
 
     protected override GpuBuffer OnAllocateSubBuffer(ulong offset, uint stride, ulong numElements, GpuResourceFlags flags, GpuBufferType type, uint alignment)
     {
-        throw new NotImplementedException();
+        DeviceVK device = Device as DeviceVK;
+
+        // TODO: 
+        
+        return this;
     }
 
     public override bool SetLocation(ulong offset, uint stride, ulong numBytes, Logger log = null)
